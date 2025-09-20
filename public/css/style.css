@@ -1,84 +1,145 @@
-/* Custom styles for the Product Management System */
+/* Custom styles for the Product Management System - Teal & Orange Theme */
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f3; /* xám nhạt nền */
+    color: #333;
 }
 
+/* Navbar */
+.navbar {
+    background: linear-gradient(135deg, #20c997, #0d6efd);
+}
 .navbar-brand {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    color: #fff !important;
 }
 
+/* Jumbotron / Header section */
 .jumbotron {
-    background: linear-gradient(135deg, #007bff, #0056b3);
+    background: linear-gradient(135deg, #20c997, #ff8800);
+    color: #fff;
+    padding: 2rem 1rem;
+    border-radius: 0.75rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
 }
 
+/* Card */
 .card {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
     border: none;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.75rem;
+}
+.card-header {
+    background-color: #20c997;
+    color: #fff;
+    font-weight: 600;
 }
 
+/* Table */
 .table th {
-    background-color: #343a40;
-    color: white;
+    background-color: #20c997;
+    color: #fff;
     border: none;
+    text-transform: uppercase;
 }
-
 .table td {
     vertical-align: middle;
+    background-color: #fff;
 }
 
+/* Buttons */
 .btn {
     margin-right: 0.25rem;
     margin-bottom: 0.25rem;
+    border-radius: 0.375rem;
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.btn-primary {
+    background-color: #20c997;
+    border-color: #20c997;
+}
+.btn-primary:hover {
+    background-color: #17a589;
+    border-color: #17a589;
+}
+.btn-secondary {
+    background-color: #ff8800;
+    border-color: #ff8800;
+}
+.btn-secondary:hover {
+    background-color: #e67e00;
+    border-color: #e67e00;
 }
 
-.btn-sm {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
-}
-
-footer {
-    margin-top: auto;
-}
-
+/* Alerts */
 .alert {
     border-radius: 0.5rem;
+    font-weight: 500;
+}
+.alert-danger {
+    background-color: #ffcccc;
+    color: #b30000;
+}
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
 }
 
-.form-control, .form-select {
-    border-radius: 0.375rem;
+/* Forms */
+.form-control, 
+.form-select {
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-control:focus, 
+.form-select:focus {
+    border-color: #20c997;
+    box-shadow: 0 0 0 0.2rem rgba(32, 201, 151, 0.25);
 }
 
-/* Responsive improvements */
+/* Footer */
+footer {
+    margin-top: auto;
+    background-color: #20c997;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .d-md-flex {
         flex-direction: column;
     }
-    
     .btn {
         margin-bottom: 0.5rem;
         width: 100%;
     }
-    
     .table-responsive {
-        font-size: 0.875rem;
+        font-size: 0.9rem;
     }
 }
 
 /* Loading animation */
 .loading {
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255,255,255,.3);
+    width: 22px;
+    height: 22px;
+    border: 3px solid rgba(32,201,151,.3);
     border-radius: 50%;
-    border-top-color: #fff;
-    animation: spin 1s ease-in-out infinite;
+    border-top-color: #20c997;
+    animation: spin 1s linear infinite;
 }
-
 @keyframes spin {
     to { transform: rotate(360deg); }
 }

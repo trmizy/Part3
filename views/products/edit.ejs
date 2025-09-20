@@ -10,54 +10,61 @@
 <body>
     <%- include('../partials/header') %>
     
-    <div class="container mt-4">
-        <h1><%= title %></h1>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0"><%= title %></h3>
+                    </div>
+                    <div class="card-body">
+                        
+                        <% if (typeof error !== 'undefined') { %>
+                            <div class="alert alert-danger"><%= error %></div>
+                        <% } %>
         
-        <% if (typeof error !== 'undefined') { %>
-            <div class="alert alert-danger"><%= error %></div>
-        <% } %>
+                        <form method="POST" action="/products/<%= product._id %>/edit">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Product Name</label>
+                                <input type="text" class="form-control" id="name" name="name" 
+                                       value="<%= product.name %>" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="number" step="0.01" class="form-control" id="price" name="price" 
+                                       value="<%= product.price %>" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <input type="number" class="form-control" id="quantity" name="quantity" 
+                                       value="<%= product.quantity %>" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="supplierID" class="form-label">Supplier</label>
+                                <select class="form-select" id="supplierID" name="supplierID" required>
+                                    <option value="">Select a supplier</option>
+                                    <% suppliers.forEach(supplier => { %>
+                                        <option value="<%= supplier._id %>" 
+                                            <%= product.supplierID && product.supplierID._id.toString() === supplier._id.toString() ? 'selected' : '' %>>
+                                            <%= supplier.name %>
+                                        </option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                            
+                            <div class="d-flex justify-content-end">
+                                <a href="/products/<%= product._id %>" class="btn btn-secondary me-2">Cancel</a>
+                                <button type="submit" class="btn btn-primary">Update Product</button>
+                            </div>
+                        </form>
 
-        <form method="POST" action="/products/<%= product._id %>/edit">
-            <div class="card">
-                <div class="card-body">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" id="name" name="name" 
-                               value="<%= product.name %>" required>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="price" class="form-label">Price</label>
-                        <input type="number" step="0.01" class="form-control" id="price" name="price" 
-                               value="<%= product.price %>" required>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="quantity" class="form-label">Quantity</label>
-                        <input type="number" class="form-control" id="quantity" name="quantity" 
-                               value="<%= product.quantity %>" required>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="supplierID" class="form-label">Supplier</label>
-                        <select class="form-select" id="supplierID" name="supplierID" required>
-                            <option value="">Select a supplier</option>
-                            <% suppliers.forEach(supplier => { %>
-                                <option value="<%= supplier._id %>" 
-                                    <%= product.supplierID && product.supplierID._id.toString() === supplier._id.toString() ? 'selected' : '' %>>
-                                    <%= supplier.name %>
-                                </option>
-                            <% }); %>
-                        </select>
-                    </div>
-                    
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="/products/<%= product._id %>" class="btn btn-secondary">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Update Product</button>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 
     <%- include('../partials/footer') %>
