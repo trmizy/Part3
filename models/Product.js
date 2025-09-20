@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema({
     min: [0, 'Quantity cannot be negative'],
     default: 0
   },
-  supplierID: {
+  supplier: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Supplier',
     required: [true, 'Supplier is required']
@@ -32,10 +32,14 @@ productSchema.virtual('url').get(function() {
   return `/products/${this._id}`;
 });
 
-// Pre-populate supplier information when querying
+// Optional: auto-populate supplier
 productSchema.pre(/^find/, function(next) {
-  this.populate('supplierID', 'name address phone');
+  this.populate('supplier', 'name address phone');
   next();
 });
+
+// Optional: indexes for performance
+productSchema.index({ name: 1 });
+productSchema.index({ supplier: 1 });
 
 module.exports = mongoose.model('Product', productSchema);

@@ -50,22 +50,22 @@
                     </div>
                     <div class="col-md-6">
                         <h5>Supplier Information</h5>
-                        <% if (product.supplierID) { %>
+                        <% if (product.supplier) { %>
                             <table class="table table-borderless">
                                 <tr>
                                     <th>Name:</th>
-                                    <td><%= product.supplierID.name %></td>
+                                    <td><%= product.supplier.name %></td>
                                 </tr>
                                 <tr>
                                     <th>Address:</th>
-                                    <td><%= product.supplierID.address %></td>
+                                    <td><%= product.supplier.address %></td>
                                 </tr>
                                 <tr>
                                     <th>Phone:</th>
-                                    <td><%= product.supplierID.phone %></td>
+                                    <td><%= product.supplier.phone %></td>
                                 </tr>
                             </table>
-                            <a href="/suppliers/<%= product.supplierID._id %>" class="btn btn-outline-primary">View Supplier Details</a>
+                            <a href="/suppliers/<%= product.supplier._id %>" class="btn btn-outline-primary">View Supplier Details</a>
                         <% } else { %>
                             <p class="text-muted">No supplier information available</p>
                         <% } %>

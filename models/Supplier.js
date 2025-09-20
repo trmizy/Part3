@@ -17,7 +17,7 @@ const supplierSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Phone number is required'],
     trim: true,
-    match: [/^[0-9+\-\s()]+$/, 'Please enter a valid phone number']
+    match: [/^\+?[0-9]{8,15}$/, 'Please enter a valid phone number']
   }
 }, {
   timestamps: true
@@ -27,5 +27,8 @@ const supplierSchema = new mongoose.Schema({
 supplierSchema.virtual('url').get(function() {
   return `/suppliers/${this._id}`;
 });
+
+// Optional: index để tìm kiếm nhanh
+supplierSchema.index({ name: 1 });
 
 module.exports = mongoose.model('Supplier', supplierSchema);

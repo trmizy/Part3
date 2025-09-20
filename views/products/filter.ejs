@@ -1,0 +1,48 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-4">
+  <h1 class="mb-4"><%= title %></h1>
+
+  <form method="GET" action="/products/browse" class="row g-3 mb-4">
+    <div class="col-md-4">
+      <select class="form-select" name="supplier">
+        <option value="">All Suppliers</option>
+        <% suppliers.forEach(s => { %>
+          <option value="<%= s._id %>" <%= supplierFilter == s._id ? "selected" : "" %>>
+            <%= s.name %>
+          </option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" name="search" placeholder="Search product by name"
+             value="<%= searchQuery %>">
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-primary w-100">
+        <i class="bi bi-search"></i> Search
+      </button>
+    </div>
+  </form>
+
+  <% if (products.length === 0) { %>
+    <div class="alert alert-warning">No products found.</div>
+  <% } else { %>
+    <div class="row">
+      <% products.forEach(p => { %>
+        <div class="col-md-4 mb-3">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"><%= p.name %></h5>
+              <p class="card-text">Supplier: <%= p.supplier ? p.supplier.name : "N/A" %></p>
+              <p class="card-text">Price: $<%= p.price %></p>
+              <a href="/products/<%= p._id %>" class="btn btn-outline-info btn-sm">View</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>
